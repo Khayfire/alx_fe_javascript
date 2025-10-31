@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dynamic Quote Generator — Persistent</title>
+  <title>Dynamic Quote Generator — Category Filter</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -26,7 +26,7 @@
       gap: 0.5rem;
       flex-wrap: wrap;
     }
-    input[type="text"] {
+    select, input[type="text"] {
       padding: 0.5rem;
       min-width: 180px;
       border-radius: 6px;
@@ -47,11 +47,16 @@
   </style>
 </head>
 <body>
-  <h1>Dynamic Quote Generator — Persistent</h1>
+  <h1>Dynamic Quote Generator — Category Filter</h1>
 
   <div id="quoteDisplay">Click "Show New Quote" to begin.</div>
 
   <div id="controls">
+    <!-- ✅ Category Filter Dropdown -->
+    <select id="categoryFilter" onchange="filterQuotes()">
+      <option value="all">All Categories</option>
+    </select>
+
     <button id="newQuote">Show New Quote</button>
     <button id="clearStorage" class="secondary">Clear Saved Quotes</button>
   </div>
@@ -63,13 +68,11 @@
   </div>
 
   <div id="importExport">
-    <!-- Import -->
     <label for="importFile" style="align-self:center; cursor:pointer;">
       <input type="file" id="importFile" accept=".json" style="display:none" />
       <button id="importBtn" class="secondary">Import Quotes</button>
     </label>
 
-    <!-- ✅ Export button text updated -->
     <button id="exportBtn">Export Quotes</button>
   </div>
 
