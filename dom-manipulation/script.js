@@ -103,6 +103,12 @@ async function syncQuotes() {
 // ---------- Periodic Sync ----------
 setInterval(fetchQuotesFromServer, 15000); // every 15 seconds
 
+// Function to save quotes to local storage
+function saveQuotesToLocalStorage() {
+  localStorage.setItem("quotes", JSON.stringify(quotes));
+}
+
+
 // ---------- Initialization ----------
 function init() {
   loadQuotes();
