@@ -1,3 +1,20 @@
+// ---------- Storage Keys ----------
+const LOCAL_STORAGE_QUOTES_KEY = "dynamic_quote_generator_quotes_v3";
+const LOCAL_STORAGE_CATEGORY_KEY = "dynamic_quote_generator_selected_category";
+const SESSION_STORAGE_LAST_QUOTE = "dynamic_quote_generator_last_viewed_quote";
+
+// ---------- Mock Server URL ----------
+const SERVER_URL = "https://jsonplaceholder.typicode.com/posts";
+
+// ---------- Default Quotes ----------
+const defaultQuotes = [
+  { id: 1, text: "The best way to predict the future is to create it.", category: "Motivation", updatedAt: Date.now() },
+  { id: 2, text: "In the middle of every difficulty lies opportunity.", category: "Inspiration", updatedAt: Date.now() },
+  { id: 3, text: "Do one thing every day that scares you.", category: "Courage", updatedAt: Date.now() },
+  { id: 4, text: "Life is what happens when you're busy making other plans.", category: "Life", updatedAt: Date.now() },
+];
+
+
 // ---------- Simulate Server Sync ----------
 async function fetchQuotesFromServer() {
   try {
