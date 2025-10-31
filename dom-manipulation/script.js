@@ -85,10 +85,20 @@ async function postQuotesToServer(newQuotes) {
 }
 
 
-// ---------- Manual Sync ----------
-function syncNow() {
-  fetchQuotesFromServer();
+// ---------- Full Sync Function ----------
+async function syncQuotes() {
+  // Fetch latest quotes from the simulated server
+  await fetchQuotesFromServer();
+
+  // Send local quotes (non-server categories) to the server
+  const unsyncedQuotes = quotes.filter(q => q.category !== "Server");
+  if (unsyncedQuotes.length > 0) {
+    await postQuotesToServer(unsyncedQuotes);
+  }
+
+  showSyncMessage("🔁 Quotes synchronized successfully!", 2500, "#d1fae5");
 }
+
 
 // ---------- Periodic Sync ----------
 setInterval(fetchQuotesFromServer, 15000); // every 15 seconds
