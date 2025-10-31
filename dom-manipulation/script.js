@@ -108,6 +108,29 @@ function saveQuotesToLocalStorage() {
   localStorage.setItem("quotes", JSON.stringify(quotes));
 }
 
+async function syncQuotes() {
+  try {
+    // Send local quotes to the server
+    await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(quotes)
+    });
+
+    // Fetch latest quotes from server after sync
+    const response = await fetchQuotesFromServer();
+    localStorage.setItem("quotes", JSON.stringify(quotes));
+
+    // ✅ Notify user that sync is complete
+    alert("Quotes synced with server!");
+  } catch (error) {
+    console.error("Error syncing quotes:", error);
+  }
+}
+
+
 
 // ---------- Initialization ----------
 function init() {
