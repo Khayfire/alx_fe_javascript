@@ -62,6 +62,29 @@ function handleConflicts(serverQuotes) {
   }
 }
 
+// ---------- Send Local Quotes to Server ----------
+async function postQuotesToServer(newQuotes) {
+  try {
+    const response = await fetch(SERVER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newQuotes),
+    });
+
+    if (response.ok) {
+      showSyncMessage("☁️ Quotes successfully sent to server!", 3000, "#d1fae5");
+    } else {
+      showSyncMessage("⚠️ Failed to send quotes to server.", 3000, "#fee2e2");
+    }
+  } catch (error) {
+    console.error("Error posting quotes:", error);
+    showSyncMessage("⚠️ Network error during quote upload.", 3000, "#fee2e2");
+  }
+}
+
+
 // ---------- Manual Sync ----------
 function syncNow() {
   fetchQuotesFromServer();
